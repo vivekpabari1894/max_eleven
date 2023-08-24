@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.form.view.inherit.pos</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pos_module_pos_restaurant']" position="after">
+                <field name="aggregation_pos" attrs="{'invisible': [('pos_module_pos_restaurant', '=', False)]}"/>
+                <!--                <field name="aggregator_pos_id" attrs="{'invisible': [('aggregation_pos', '=', False)]}"/>-->
+            </xpath>
+            <xpath expr="//div[@id='pos_interface_section']/div[2]/div[2]" position="after">
+                <div class="o_setting_right_pane">
+                    <div>
+                        <label for="aggregation_pos" attrs="{'invisible': [('pos_module_pos_restaurant', '=', False)]}"/>
+                    </div>
+                </div>
+                <div class="o_setting_right_pane">
+                    <div>
+                        <label for="aggregator_pos_id" attrs="{'invisible': ['|', ('pos_module_pos_restaurant','=',False),('aggregation_pos', '=', False)]}"/>
+                        <div class="content-group mt16">
+                            <field name="aggregator_pos_id" attrs="{'invisible': ['|', ('pos_module_pos_restaurant','=',False),('aggregation_pos', '=', False)]}"
+                                   domain="[('id', 'not in', [pos_config_id])]"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

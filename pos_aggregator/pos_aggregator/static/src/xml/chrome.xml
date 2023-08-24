@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension" owl="1">
+        <xpath expr="//CashierName" position="before">
+            <t t-if="env.pos.config.aggregator_pos_id.length > 0">
+                <div t-on-click="move_to">Switch To <t t-esc="env.pos.config.aggregator_pos_id[1]"/></div>
+            </t>
+        </xpath>
+    </t>
+</templates>
